@@ -1,6 +1,5 @@
 package com.mahendra.orderservice.service;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -35,7 +34,6 @@ class InventoryServiceTest {
     }
 
     @Test
-   // @Disabled("Known race condition - tracked for follow-up")
     void testConcurrentAllocation() throws Exception {
         InventoryService inventoryService = new InventoryService();
         ExecutorService executorService = Executors.newFixedThreadPool(20);
