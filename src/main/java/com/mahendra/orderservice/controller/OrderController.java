@@ -2,6 +2,7 @@ package com.mahendra.orderservice.controller;
 
 import com.mahendra.orderservice.dto.OrderRequest;
 import com.mahendra.orderservice.dto.OrderResponse;
+import com.mahendra.orderservice.exception.OrderNotFoundException;
 import com.mahendra.orderservice.service.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +34,8 @@ public class OrderController {
 
     @GetMapping("/{id}")
     public ResponseEntity<OrderResponse> getOrder(@PathVariable UUID id) {
-        return orderService.getOrder(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        OrderResponse response = orderService.getOrder(id)
+                .orElseThrow(() -> new OrderNotFoundException(id));
+        return ResponseEntity.ok(response);
     }
 }
