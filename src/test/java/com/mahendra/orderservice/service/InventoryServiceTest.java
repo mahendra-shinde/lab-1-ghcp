@@ -35,7 +35,7 @@ class InventoryServiceTest {
     }
 
     @Test
-    @Disabled("Known race condition - tracked for follow-up")
+   // @Disabled("Known race condition - tracked for follow-up")
     void testConcurrentAllocation() throws Exception {
         InventoryService inventoryService = new InventoryService();
         ExecutorService executorService = Executors.newFixedThreadPool(20);
